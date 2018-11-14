@@ -1,0 +1,126 @@
+#include<conio.h>
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std;
+
+//function to fill the array
+
+void filllevel(int templevel[5][5])
+{
+	int i, j, k;
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 1; j < 5; j++)
+		{
+			if (templevel[j][i] == 0)
+			{
+				for (k = j; k > 0; k--)
+				{
+					templevel[k][i] = templevel[k - 1][i];
+				}
+				templevel[0][i] = rand() % 3 + 1;
+			}
+		}
+	}
+}
+
+void scores(int templevel[5][5])
+{
+	int flagv = 0,furtherv;
+	int flagh = 0, furtherh;
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			furtherh = j;
+			while (templevel[i][j] == templevel[i][furtherh])				
+			{
+				flagh++;
+				furtherh++;
+			}
+			if (flagh > 1)
+			{
+				for (int p = j; p < p + flagh; p++)
+				{
+					templevel[i][p] = 0;
+				}
+			}
+			flagv = 0;
+
+			furtherv = j;
+			while (templevel[i][j] == templevel[furtherv][i])
+			{
+				flagv++;
+				furtherv++;
+			}
+			if (flagv > 1)
+			{
+				for (int p = j; p < p + flagv; p++)
+				{
+					templevel[p][i] = 0;
+				}
+			}
+			flagv = 0;
+		}
+	}
+
+}
+
+int main()
+{
+	int level[5][5];
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			level[i][j] = 0;
+		}
+	}
+	filllevel(level);
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			cout<<level[i][j]<<"\t";
+		}
+		cout << endl;
+	}
+	int row, column, swipemethod;
+
+	cout << "enter row and column of the element you want to swipe" << endl;
+	cout << "enter row:\t";
+	cin >> row;
+	cout << "enter column:\t";
+	cin >> column;
+	cout << "enter swipe method \n 1 to swipe up\n-1to swipe down\n2 to swipe left\n-2 to swipe right" << endl;
+	cout << "swipe method:\t";
+	cin >> swipemethod;
+
+	int swap;
+	swap = level[row][column];
+	switch (swipemethod)
+	{
+		case 1:
+			{
+			 level[row][column]=level[row + swipemethod][column];
+			 level[row + swipemethod][column] = swap;
+			}
+		case -1:
+			{
+			level[row][column] = level[row + swipemethod][column];
+			level[row + swipemethod][column] = swap;
+			}
+		case 2:
+			{
+			level[row][column] = level[row ][column + swipemethod];
+			level[row ][column + swipemethod] = swap;
+			}
+		case -2:
+			{
+			level[row][column] = level[row ][column + swipemethod];
+			level[row ][column + swipemethod] = swap;
+			}
+	}
+	_getch();
+}
