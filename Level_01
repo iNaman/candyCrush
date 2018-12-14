@@ -1,0 +1,320 @@
+#pragma once
+#include<stdlib.h>
+
+namespace Candy {
+
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
+
+	/// <summary>
+	/// Summary for MyForm
+	/// </summary>
+	void gameBegins();
+
+	public ref class MyForm : public System::Windows::Forms::Form
+	{
+	public:
+		static array<PictureBox^>^ candies = gcnew array<PictureBox^>(5);
+	public:static System::Windows::Forms::PictureBox^  emptybox;
+	public:static System::Windows::Forms::GroupBox^  groupBox1;
+	public:
+
+
+	public:
+		static array<PictureBox^, 2>^ level = gcnew array<PictureBox^, 2>(5, 8);
+	public:
+		MyForm(void)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+
+			candies[0] = Candy::MyForm::c01;
+			candies[1] = Candy::MyForm::c02;
+			candies[2] = Candy::MyForm::c03;
+			candies[3] = Candy::MyForm::c04;
+			candies[4] = Candy::MyForm::c05;
+			
+			gameBegins();
+			for (int j = 0; j < 5; j++)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					level[j,i]->Click += gcnew System::EventHandler(this, &MyForm::TileImage_Click);
+				}
+			}
+		}
+
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~MyForm()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+	public:static System::Windows::Forms::Panel^  panel1;
+
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	public: System::Windows::Forms::PictureBox^  c04;
+	private:
+	public: System::Windows::Forms::PictureBox^  c02;
+	public: System::Windows::Forms::PictureBox^  c03;
+	public: System::Windows::Forms::PictureBox^  c01;
+	public: System::Windows::Forms::PictureBox^  c05;
+
+
+
+
+
+
+
+
+
+	protected:
+
+
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		System::ComponentModel::Container ^components;
+
+#pragma region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->emptybox = (gcnew System::Windows::Forms::PictureBox());
+			this->c04 = (gcnew System::Windows::Forms::PictureBox());
+			this->c02 = (gcnew System::Windows::Forms::PictureBox());
+			this->c03 = (gcnew System::Windows::Forms::PictureBox());
+			this->c01 = (gcnew System::Windows::Forms::PictureBox());
+			this->c05 = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->emptybox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c04))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c02))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c03))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c01))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c05))->BeginInit();
+			this->SuspendLayout();
+			// 
+			// panel1
+			// 
+			this->panel1->Controls->Add(this->groupBox1);
+			this->panel1->Controls->Add(this->emptybox);
+			this->panel1->Controls->Add(this->c04);
+			this->panel1->Controls->Add(this->c02);
+			this->panel1->Controls->Add(this->c03);
+			this->panel1->Controls->Add(this->c01);
+			this->panel1->Controls->Add(this->c05);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(578, 649);
+			this->panel1->TabIndex = 0;
+			this->panel1->Visible = false;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel1_Paint);
+			// 
+			// emptybox
+			// 
+			this->emptybox->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"emptybox.Image")));
+			this->emptybox->Location = System::Drawing::Point(239, 480);
+			this->emptybox->Name = L"emptybox";
+			this->emptybox->Size = System::Drawing::Size(73, 52);
+			this->emptybox->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->emptybox->TabIndex = 5;
+			this->emptybox->TabStop = false;
+			this->emptybox->Visible = false;
+			// 
+			// c04
+			// 
+			this->c04->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"c04.Image")));
+			this->c04->Location = System::Drawing::Point(354, 547);
+			this->c04->Name = L"c04";
+			this->c04->Size = System::Drawing::Size(73, 52);
+			this->c04->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->c04->TabIndex = 4;
+			this->c04->TabStop = false;
+			// 
+			// c02
+			// 
+			this->c02->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"c02.Image")));
+			this->c02->Location = System::Drawing::Point(140, 547);
+			this->c02->Name = L"c02";
+			this->c02->Size = System::Drawing::Size(73, 52);
+			this->c02->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->c02->TabIndex = 3;
+			this->c02->TabStop = false;
+			// 
+			// c03
+			// 
+			this->c03->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"c03.Image")));
+			this->c03->Location = System::Drawing::Point(239, 547);
+			this->c03->Name = L"c03";
+			this->c03->Size = System::Drawing::Size(73, 52);
+			this->c03->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->c03->TabIndex = 2;
+			this->c03->TabStop = false;
+			this->c03->Click += gcnew System::EventHandler(this, &MyForm::pictureBox3_Click);
+			// 
+			// c01
+			// 
+			this->c01->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"c01.Image")));
+			this->c01->Location = System::Drawing::Point(34, 547);
+			this->c01->Name = L"c01";
+			this->c01->Size = System::Drawing::Size(73, 52);
+			this->c01->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->c01->TabIndex = 1;
+			this->c01->TabStop = false;
+			// 
+			// c05
+			// 
+			this->c05->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"c05.Image")));
+			this->c05->Location = System::Drawing::Point(459, 547);
+			this->c05->Name = L"c05";
+			this->c05->Size = System::Drawing::Size(73, 52);
+			this->c05->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->c05->TabIndex = 0;
+			this->c05->TabStop = false;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(83, 92);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(428, 118);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"PLAY";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(108, 282);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(374, 137);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"EXIT";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click_1);
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Location = System::Drawing::Point(100, 100);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(400, 250);
+			this->groupBox1->TabIndex = 6;
+			this->groupBox1->TabStop = false;
+			// 
+			// MyForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(578, 649);
+			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
+			this->Name = L"MyForm";
+			this->Text = L"MyForm";
+			this->panel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->emptybox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c04))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c02))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c03))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c01))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->c05))->EndInit();
+			this->ResumeLayout(false);
+
+		}
+#pragma endregion
+	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		panel1->Visible = true;
+	}
+	private: System::Void button2_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		this->Close();
+	}
+	private: System::Void pictureBox3_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+}
+
+	private: System::Void TileImage_Click(System::Object^ sender, System::EventArgs^ e) {
+		level[(int)(groupBox1->PointToClient(this->MousePosition).Y / 50), (int)(groupBox1->PointToClient(this->MousePosition).X / 50)]->Image = c01->Image;
+	}
+
+};
+class gamestate
+{
+public:
+	void fillwithcandies();
+	void droppingcandies();
+};
+
+void gamestate::fillwithcandies()
+{
+	int r = 0, c = 0;
+	for (int j = 0; j < 5; j++)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			int rnd = rand() % 5;
+			Candy::MyForm::level[j, i] = gcnew PictureBox();
+			Candy::MyForm::panel1->Controls->Add(Candy::MyForm::level[j, i]);
+			Candy::MyForm::level[j, i]->Parent = Candy::MyForm::groupBox1;
+			Candy::MyForm::level[j, i]->Location = System::Drawing::Point(50 * r, 50 * c);
+			Candy::MyForm::level[j, i]->Size = System::Drawing::Size(50, 50);
+			Candy::MyForm::level[j, i]->Image = Candy::MyForm::candies[rnd]->Image;
+			Candy::MyForm::level[j, i]->SizeMode = PictureBoxSizeMode::StretchImage;
+			r++;
+		}
+		c++;
+		r = 0;
+	}
+}
+
+void gamestate::droppingcandies()
+{
+	int rnd = rand() % 5;
+	for (int j = 4; j > 0; j--)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+
+			if (Candy::MyForm::level[j, i]->Image== Candy::MyForm::emptybox->Image)
+			{
+				int p = j;
+				while (p != 0)
+				{
+					Candy::MyForm::level[p, i]->Image = Candy::MyForm::level[p-1, i]->Image;
+					p--;
+				}
+				Candy::MyForm::level[0, i]->Image = Candy::MyForm::candies[rnd]->Image;
+			}
+		}
+	}
+}
+
+void gameBegins()
+{
+	gamestate fc;
+	fc.fillwithcandies();
+	fc.droppingcandies();
+}
+}
