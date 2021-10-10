@@ -1,6 +1,6 @@
 #pragma once
 #include<stdlib.h>
-
+#include<conio.h>
 namespace Candy {
 
 	using namespace System;
